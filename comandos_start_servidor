@@ -1,0 +1,5 @@
+#1° passo 
+python -m venv .
+
+2° passo
+Scripts\activate
