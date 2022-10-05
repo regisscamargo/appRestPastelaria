@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Funcionário{% endblock %}
+
+{% block content %}
+
+<form name="funcionario" id="funcionario" action="" method="POST">
+    <h1>Funcionário</h1>
+    <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
+    <label for="id">Código</label>
+    <br>
+    <input type="text" name="nome" id="nome" value="" placeholder="Nome Funcionário" maxlength="100" autofocus required>
+    <label for="nome">Nome Funcionário</label>
+    <br>
+    <input type="text" name="matricula" id="matricula" value="" placeholder="Matrícula" maxlength="15" required>
+    <label for="matricula">Matrícula</label>
+    <br>
+    <input type="text" name="cpf" id="cpf" value="" placeholder="CPF" maxlength="15" required>
+    <label for="cpf">CPF</label>
+    <br>
+    <input type="tel" name="telefone" id="telefone" value="" placeholder="Telefone" maxlength="15" required>
+    <label for="telefone" class="form-label">Telefone</label>
+    <br>
+    <select name="grupo" id="grupo" aria-label="Grupo">
+        <option value="0">Atendente</option>
+        <option value="1">Caixa</option>
+        <option value="2">Adm</option>
+    </select>
+    <label for="grupo">Grupo</label>
+    <br>
+    <input type="password" name="senha" id="senha" value="Bolinhas" placeholder="Senha" required>
+    <label for="senha">Senha</label>
+    <br>
+    <input type="password" name="resenha" id="resenha" value="Bolinhas" placeholder="Senha" required>
+    <label for="resenha">reSenha</label>
+    <br>
+    <button type='submit' name='salvaUsuarioDB' id='salvaUsuarioDB'><i class='fas fa-save'></i> Salvar</button>
+</form>
+
+{% endblock %}

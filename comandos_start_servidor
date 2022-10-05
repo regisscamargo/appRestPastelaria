@@ -6,3 +6,13 @@ Scripts\activate
 
 3° passo 
 Flask --app appPastelaria.py routes
+
+4° passo
+
+python appPastelaria
+
+Comandos aleatorios -m
+
+python.exe -m pip install --upgrade pip
+
+pip install flask

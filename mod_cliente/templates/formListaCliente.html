@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    
-<head>
-    <meta charset="UTF-8">  
-    <title>Cliente</title>
-</head>
-<body>
-    <h1>Rota da página de Cliente da nossa WEB APP linda</h1>
-    <h1>Uso de render_template</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Funcionário{% endblock %}
+
+{% block content %}
+<h1>Cliente</h1>
+<p class="important">Seja bem vindo!</p>
+<ul>
+    <li><a href="{{ url_for('index.formIndex') }}">Cliente</a></li>
+</ul>
+{% endblock %}

@@ -1,12 +1,38 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    
-<head>
-    <meta charset="UTF-8">  
-    <title>Funcionários</title>
-</head>
-<body>
-    <h1>Rota da página de Funcionários da nossa WEB APP</h1>
-    <h1>Uso de render_template</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Funcionários{% endblock %}
+
+{% block content %}
+
+<form action="{{ url_for('funcionario.formFuncionario') }}" method="POST">
+    <h1>Funcionários</h1>
+    <button type="submit" name="formNovo">Novo Funcionário</button>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Matricula</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Senha</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">...</th>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td><i class="fas fa-edit"></i></td>
+            <td><i class="fas fa-trash"></i></td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

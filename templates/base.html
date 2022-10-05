@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - AbcBolinhas</title>
+    {% block style %}{% endblock %}
+    <style>
+        .important {
+            color: #6495ED;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.2.1-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.2.0-web/css/all.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+    {% block menu %}
+    <ul>
+        <li><a href="{{ url_for('index.formIndex') }}"><i class="fas fa-home"></i> HOME</a></li>
+        <li><a href="{{ url_for('funcionario.formListaFuncionario') }}"><i class="fas fa-cart-arrow-down"></i>
+                FUNCIONÁRIOS</a></li>
+        <li><a href="{{ url_for('cliente.formListaCliente') }}"><i class="fas fa-users"></i> CLIENTES</a></li>
+        <li><a href="{{ url_for('produto.formListaProduto') }}"><i class="fas fa-pizza-slice"></i> PRODUTOS</a></li>
+    </ul>
+    {% endblock %}
+    <div class="container-fluid mt-3">
+        {% block content %}{% endblock %}
+        <br><br><br>
+    </div>
+    {% block footer %}
+    <a href="{{ url_for('index.formIndex') }}">&copy; 2022 by AbcBolinhas</a>
+    {% endblock %}
+    {% block js %}{% endblock %}
+    <script src="{{ url_for('static', filename='bootstrap-5.2.1-dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='fontawesome-free-6.2.0-web/js/all.js') }}"></script>
+</body>
+
+</html>
