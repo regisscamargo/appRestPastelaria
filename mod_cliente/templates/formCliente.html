@@ -1,5 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
 {% extends "base.html" %} {% block title %}Funcionário{% endblock %} {% block
 content %}
 <script type="text/javascript">
@@ -7,20 +8,20 @@ content %}
   $("#cpf").mask("000.000.000-00");
 </script>
 <form
-  class="row g-3 bg-dark mx-5 text-white p-3 mt-5 rounded shadow-lg"
+  class="row g-3 bg-dark mx-5 text-white p-3 mt-5 rounded shadow-lg fs-5"
   name="funcionario"
   id="funcionario"
   action=""
   method="POST"
 >
-  <h1><i class="fa fa-user-plus"></i> Cadastrar novo funcionário</h1>
+  <h1><i class="fa fa-user-plus"></i> Cadastrar novo cliente</h1>
   <hr />
   <div class="col-md-6">
     <label for="nome" class="form-label">Nome</label>
     <input
       type="text"
       class="form-control bg-dark text-white"
-      placeholder="Nome do funcionário"
+      placeholder="Nome do cliente"
       id="nome"
     />
   </div>
@@ -28,18 +29,9 @@ content %}
     <label for="cpf" class="form-label">CPF</label>
     <input
       type="cpf"
-      class="form-control bg-dark text-white ls-mask-phone9_with_ddd"
+      class="form-control bg-dark text-white"
       placeholder="000.000.000-00"
       id="cpf"
-    />
-  </div>
-  <div class="col-md-6">
-    <label for="matricula" class="form-label">Matrícula</label>
-    <input
-      type="number"
-      class="form-control bg-dark text-white"
-      placeholder="Matícula"
-      id="matricula"
     />
   </div>
   <div class="col-md-6">
@@ -51,7 +43,23 @@ content %}
       id="telefone"
     />
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6"></div>
+  <div class="col-md-12">
+    <label for="compraFiado" class="form-label">Fiado</label>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="compraFiado">
+      <label class="form-check-label" for="compraFiado">Cliente poderá efetuar compras no fiado</label>
+    </div>
+    <br/>
+    <label for="diaFiado" class="form-label">Dia fiado</label><br/>
+    <input
+      class="bg-dark text-white"
+      type="date"
+      id="diaFiado"
+      name="trip-start"
+    />
+  </div>
+  <div class="col-md-6">
     <label for="senha" class="form-label">Senha</label>
     <input
       type="password"
@@ -60,7 +68,7 @@ content %}
       id="senha"
     />
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
     <label for="reSenha" class="form-label">Digite a senha novamente</label>
     <input
       type="password"
@@ -68,15 +76,6 @@ content %}
       placeholder="Repita sua senha"
       id="reSenha"
     />
-  </div>
-  <div class="col-md-2">
-    <label for="inputState" class="form-label">Grupo</label>
-    <select id="inputState" class="form-select bg-dark text-white">
-      <option selected disabled>Selecione...</option>
-      <option>Atendente</option>
-      <option>Caixa</option>
-      <option>ADM</option>
-    </select>
   </div>
 
   <div class="col-12 d-flex flex-row-reverse">

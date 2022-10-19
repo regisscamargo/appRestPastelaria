@@ -1,11 +1,17 @@
-{% extends "base.html" %}
-
-{% block title %}Funcionário{% endblock %}
-
-{% block content %}
-<h1>Home</h1>
-<p class="important">Seja bem vindo!</p>
-<ul>
-    <li><a href="{{ url_for('index.formIndex') }}">Home</a></li>
-</ul>
-{% endblock %}
+{% extends "base.html" %} {% block title %}Funcionário{% endblock %} {% block
+    content %}
+    <body>
+      <h1>Inicio</h1>
+      <ul>
+        <li><a href="{{ url_for('index.formIndex') }}">Inicio</a></li>
+        <li>
+          <a href="{{ url_for('funcionario.formListaFuncionario') }}"
+            >Funcionário</a
+          >
+        </li>
+        <li><a href="{{ url_for('cliente.formListaCliente') }}">Cliente</a></li>
+        <li><a href="{{ url_for('produto.formListaProduto') }}">Produto</a></li>
+      </ul>
+    </body>
+    {% endblock %}
+    
