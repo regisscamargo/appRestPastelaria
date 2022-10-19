@@ -6,3 +6,6 @@ Scripts\activate
 
 3° passo 
 Flask --app appPastelaria.py routes
+
+4° passo 
+python appPastelaria -r

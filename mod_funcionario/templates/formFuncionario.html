@@ -1,0 +1,93 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+{% extends "base.html" %} {% block title %}Funcionário{% endblock %} {% block
+content %}
+<script type="text/javascript">
+  $("#telefone").mask("(00) 0000-0000");
+  $("#cpf").mask("000.000.000-00");
+</script>
+<form
+  class="row g-3 bg-dark mx-5 text-white p-3 mt-5 rounded shadow-lg"
+  name="funcionario"
+  id="funcionario"
+  action=""
+  method="POST"
+>
+  <h1><i class="fa fa-user-plus"></i> Cadastrar novo funcionário</h1>
+  <hr />
+  <div class="col-md-6">
+    <label for="nome" class="form-label">Nome</label>
+    <input
+      type="text"
+      class="form-control bg-dark text-white"
+      placeholder="Nome do funcionário"
+      id="nome"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="cpf" class="form-label">CPF</label>
+    <input
+      type="cpf"
+      class="form-control bg-dark text-white ls-mask-phone9_with_ddd"
+      placeholder="000.000.000-00"
+      id="cpf"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="matricula" class="form-label">Matrícula</label>
+    <input
+      type="number"
+      class="form-control bg-dark text-white"
+      placeholder="Matícula"
+      id="matricula"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="telefone" class="form-label">Telefone</label>
+    <input
+      type="phone"
+      class="form-control bg-dark text-white"
+      placeholder="(00) 0 0000-0000"
+      id="telefone"
+    />
+  </div>
+  <div class="col-md-5">
+    <label for="senha" class="form-label">Senha</label>
+    <input
+      type="password"
+      class="form-control bg-dark text-white"
+      placeholder="Crie sua senha"
+      id="senha"
+    />
+  </div>
+  <div class="col-md-5">
+    <label for="reSenha" class="form-label">Digite a senha novamente</label>
+    <input
+      type="password"
+      class="form-control bg-dark text-white"
+      placeholder="Repita sua senha"
+      id="reSenha"
+    />
+  </div>
+  <div class="col-md-2">
+    <label for="inputState" class="form-label">Grupo</label>
+    <select id="inputState" class="form-select bg-dark text-white">
+      <option selected disabled>Selecione...</option>
+      <option>Atendente</option>
+      <option>Caixa</option>
+      <option>ADM</option>
+    </select>
+  </div>
+
+  <div class="col-12 d-flex flex-row-reverse">
+    <button
+      type="submit"
+      class="btn btn-success"
+      name="salvaUsuarioDB"
+      id="salvaUsuarioDB"
+    >
+      <i class="fas fa-save"></i> Cadastrar
+    </button>
+  </div>
+</form>
+{% endblock %}
