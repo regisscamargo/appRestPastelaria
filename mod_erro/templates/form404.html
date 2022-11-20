@@ -1,19 +1,18 @@
 {% extends "base.html" %} {% block title %}Page Not Found{% endblock %} {% block
-    content %}
-    <div class="row">
-      <div class="col">
-        <h1>Página não encontrada!</h1>
-        <h3>Favor verificar se o endereço digitado esta correto.</h3>
-      </div>
-    </div>
-    <figure>
-      <img src="{{ url_for('static', filename='Erro404.jpg') }}" alt="Erro 404" style="width: 400px;"/>
-    </figure>
-    <div class="row">
-      <div class="col">
-        {# mostra a mensagem de erro retornada #}
-        <p>{{ erroHttp }}</p>
-      </div>
-    </div>
-    {% endblock %}
-    
+content %}
+<div class="row">
+  <div class="col">
+    <h1>Página não encontrada!</h1>
+    <h3>Favor verificar se o endereço digitado esta correto.</h3>
+  </div>
+</div>
+<figure>
+  <img src="{{ url_for('static', filename='Erro404.jpg') }}" alt="Erro 404" style="width: 400px;"/>
+</figure>
+<div class="row">
+  <div class="col">
+    {# mostra a mensagem de erro retornada #}
+    <p>{{ erroHttp }}</p>
+  </div>
+</div>
+{% endblock %}

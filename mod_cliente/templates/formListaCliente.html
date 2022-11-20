@@ -1,32 +1,36 @@
 {% extends "base.html" %} {% block title %}Funcionários{% endblock %} {% block
-    content %}
-    <form action="{{ url_for('cliente.formCliente') }}" method="POST">
-      <h1><i class="fas fa-list"></i> Lista de clientes</h1>
-      <button type="submit" name="formNovo" class="btn btn-outline-dark my-3"><i class="fas fa-add"></i> Cadastrar novo cliente</button>
-    </form>
-    <table class="table table table-striped">
-      <thead class="thead-dark bg-dark text-white">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nome</th>
-          <th scope="col">CPF</th>
-          <th scope="col">Telefone</th>
-          <th scope="col">Endereço</th>
-          <th scope="col">Forma de Pagamento</th>
-          <th scope="col">Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Pedro Gordoberto Coelho Marechal Joaquim</td>
-          <td>111.111.111-11</td>
-          <td>123 123 123</td>
-          <td>Dom II</td>
-          <td>Débito</td>
-          <td class="d-flex justify-content-around align-items-center"><i class="fas fa-edit"></i> <i class="fas fa-trash"></i></td>
-        </tr>
-      </tbody>
-    </table>
-    {% endblock %}
-    
+  content %}
+  <form action="{{ url_for('cliente.formCliente') }}" method="POST">
+    <h1><i class="fas fa-list"></i> Lista de clientes</h1>
+    <button type="submit" name="formNovo" class="btn btn-outline-dark my-3"><i class="fas fa-add"></i> Cadastrar novo cliente</button>
+  </form>
+  <table class="table table table-striped">
+    <thead class="thead-dark bg-dark text-white">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Vende fiado</th>
+        <th scope="col">Dia fiado</th>
+        <th scope="col">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if result %}
+      {% for row in result[0] %}
+      <tr>
+        <th scope="row">{{ row['id_cliente'] }}</th>
+        <td>{{ row['nome'] }}</td>
+        <td>{{ row['cpf'] }}</td>
+        <td>{{ row['telefone'] }}</td>
+        <td>{{ row['compra_fiado'] }}</td>
+        <td>{{ row['dia_fiado'] }}</td>
+        <td class="d-flex justify-content-around align-items-center"><i class="fas fa-edit"></i> <i class="fas fa-trash"></i></td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  {% endblock %}
+  

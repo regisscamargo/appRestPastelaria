@@ -9,9 +9,9 @@ content %}
 </script>
 <form
   class="row g-3 bg-dark mx-5 text-white p-3 mt-5 rounded shadow-lg fs-5"
-  name="funcionario"
-  id="funcionario"
-  action=""
+  name="cliente"
+  id="cliente"
+  action="{{ url_for('cliente.insert') }}"
   method="POST"
 >
   <h1><i class="fa fa-user-plus"></i> Cadastrar novo cliente</h1>
@@ -23,6 +23,7 @@ content %}
       class="form-control bg-dark text-white"
       placeholder="Nome do cliente"
       id="nome"
+      name="nome"
     />
   </div>
   <div class="col-md-6">
@@ -32,6 +33,7 @@ content %}
       class="form-control bg-dark text-white"
       placeholder="000.000.000-00"
       id="cpf"
+      name="cpf"
     />
   </div>
   <div class="col-md-6">
@@ -41,13 +43,14 @@ content %}
       class="form-control bg-dark text-white"
       placeholder="(00) 0 0000-0000"
       id="telefone"
+      name="telefone"
     />
   </div>
   <div class="col-md-6"></div>
   <div class="col-md-12">
     <label for="compraFiado" class="form-label">Fiado</label>
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="compraFiado">
+      <input class="form-check-input" type="checkbox" role="switch" id="compraFiado" name="compra_fiado">
       <label class="form-check-label" for="compraFiado">Cliente poderá efetuar compras no fiado</label>
     </div>
     <br/>
@@ -56,7 +59,7 @@ content %}
       class="bg-dark text-white"
       type="date"
       id="diaFiado"
-      name="trip-start"
+      name="diaFiado"
     />
   </div>
   <div class="col-md-6">
@@ -66,15 +69,17 @@ content %}
       class="form-control bg-dark text-white"
       placeholder="Crie sua senha"
       id="senha"
+      name="senha"
     />
   </div>
   <div class="col-md-6">
-    <label for="reSenha" class="form-label">Digite a senha novamente</label>
+    <label for="reSenha" class="form-label">Re-Senha</label>
     <input
       type="password"
       class="form-control bg-dark text-white"
       placeholder="Repita sua senha"
       id="reSenha"
+      name="resenha"
     />
   </div>
 
