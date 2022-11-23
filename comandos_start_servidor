@@ -8,4 +8,4 @@ Scripts\activate
 Flask --app appPastelaria.py routes
 
 4° passo 
-python appPastelaria -r
+python appPastelaria.py -r
