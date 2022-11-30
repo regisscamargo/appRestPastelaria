@@ -9,8 +9,14 @@
   type="text/javascript"
 ></script>
 
-{% extends "base.html" %} {% block title %}Produto{% endblock %} {% block
-content %}
+{% extends "base.html" %} {% block title %}Produto{% endblock %}
+{# ajusta as variáveis conforme novo ou edit #}
+{% set id = result[0].id_produto if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set descricao = result[0].descricao if result else '' %}
+{% set foto = result[0].foto if result else '' %}
+{% set valor = result[0].valor if result else '' %}
+{% block content %}
 
 <script>
   jQuery(function () {
@@ -23,21 +29,24 @@ content %}
 </script>
 <form
   class="row g-3 bg-dark mx-5 text-white p-3 mt-5 rounded shadow-lg"
-  name="produto"
-  id="produto"
-  action="{{ url_for('produto.insert') }}"
+  name="{{ 'formEditar' if result else 'formAdicionar' }}"  
+  id="{{ 'formEditar' if result else 'formAdicionar' }}"
+  action="{{ url_for('produto.edit') if result else url_for('produto.insert') }}"
   method="POST"
 >
   <h1><i class="fa fa-user-plus"></i> Cadastrar novo produto</h1>
   <hr />
   <div class="col-md-6">
+    <input type="text" name="id" id="id" value="{{ id }}" hidden>
+
     <label for="nome" class="form-label">Nome do produto</label>
     <input
       type="text"
       class="form-control bg-dark text-white"
-      placeholder="Nome do cliente"
+      placeholder="Nome do produto"
       id="nome"
       name="nome"
+      value="{{ nome }}"
     />
   </div>
   <div class="col-md-6">
@@ -48,6 +57,8 @@ content %}
       placeholder="Descrição do produto"
       id="descricao"
       name="descricao"
+      value="{{ descricao }}"
+
     />
   </div>
   <div class="col-md-6">
@@ -58,6 +69,8 @@ content %}
       id="foto"
       accept="image/*"
       name="foto"
+      value="{{ foto }}"
+
     />
   </div>
   <div class="col-md-6"></div>
@@ -68,7 +81,9 @@ content %}
       class="form-control bg-dark text-white"
       placeholder="4,00"
       id="valor"
-      name="valor_unitario"
+      name="valor"
+      value="{{ valor }}"
+
     />
   </div>
 

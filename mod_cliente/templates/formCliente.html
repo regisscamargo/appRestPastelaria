@@ -1,7 +1,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
-{% extends "base.html" %} {% block title %}Funcionário{% endblock %} {% block
+{% extends "base.html" %} {% block title %}Cliente{% endblock %}
+{# ajusta as variáveis conforme novo ou edit #}
+{% set id = result[0].id_cliente if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set cpf = result[0].cpf if result else '' %}
+{% set telefone = result[0].telefone if result else '' %}
+{% set diaFiado = result[0].dia_fiado if result else '' %}
+{% set compra_fiado = result[0].compra_fiado if result else '' %}{% block
 content %}
 <script type="text/javascript">
   $("#telefone").mask("(00) 0000-0000");
@@ -9,14 +16,17 @@ content %}
 </script>
 <form
   class="row g-3 bg-dark mx-5 text-white p-3 mt-5 rounded shadow-lg fs-5"
-  name="cliente"
-  id="cliente"
-  action="{{ url_for('cliente.insert') }}"
+  name="{{ 'formEditar' if result else 'formAdicionar' }}"  
+  id="{{ 'formEditar' if result else 'formAdicionar' }}"
+  action="{{ url_for('cliente.edit') if result else url_for('cliente.insert') }}"
   method="POST"
 >
-  <h1><i class="fa fa-user-plus"></i> Cadastrar novo cliente</h1>
+<h1><i class="fa fa-user-plus"></i> Cliente - {{ "%s: %s" % ('Editar Registro', id) if result else 'Novo' }}</h1>
+
   <hr />
   <div class="col-md-6">
+    <input type="text" name="id" id="id" value="{{ id }}" hidden>
+
     <label for="nome" class="form-label">Nome</label>
     <input
       type="text"
@@ -24,6 +34,7 @@ content %}
       placeholder="Nome do cliente"
       id="nome"
       name="nome"
+      value="{{ nome }}"
     />
   </div>
   <div class="col-md-6">
@@ -34,6 +45,7 @@ content %}
       placeholder="000.000.000-00"
       id="cpf"
       name="cpf"
+      value="{{ cpf }}"
     />
   </div>
   <div class="col-md-6">
@@ -44,22 +56,24 @@ content %}
       placeholder="(00) 0 0000-0000"
       id="telefone"
       name="telefone"
+      value="{{ telefone }}"
     />
   </div>
   <div class="col-md-6"></div>
   <div class="col-md-12">
     <label for="compraFiado" class="form-label">Fiado</label>
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="compraFiado" name="compra_fiado">
+      <input class="form-check-input" type="checkbox" role="switch" id="compraFiado" name="compraFiado" value="{{ compraFiado }}">
       <label class="form-check-label" for="compraFiado">Cliente poderá efetuar compras no fiado</label>
     </div>
     <br/>
     <label for="diaFiado" class="form-label">Dia fiado</label><br/>
     <input
       class="bg-dark text-white"
-      type="date"
+      type="text"
       id="diaFiado"
       name="diaFiado"
+      value="{{ diaFiado }}"
     />
   </div>
   <div class="col-md-6">

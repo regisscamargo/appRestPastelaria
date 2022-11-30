@@ -28,7 +28,29 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='bootstrap-5.2.1-dist/css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='fontawesome-free-6.2.0-web/css/all.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='sweetalert2/sweetalert2.min.css') }}"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -39,58 +61,119 @@
     {% block menu %}
     <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
       <div class="container-fluid">
-        <img src="../static/pastel.png" width="25px">
+        <img src="../static/pastel.png" width="25px" />
         <a class="navbar-brand" href="#"> Pastelaria</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{ url_for('index.formIndex') }}"><i class="fas fa-home"></i> Home</a>
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="{{ url_for('index.formIndex') }}"
+                ><i class="fas fa-home"></i> Home</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{ url_for('funcionario.formListaFuncionario') }}"><i class="fas fa-cart-arrow-down"></i> Funcionários</a>
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="{{ url_for('funcionario.formListaFuncionario') }}"
+                ><i class="fas fa-cart-arrow-down"></i> Funcionários</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{ url_for('cliente.formListaCliente') }}"><i class="fas fa-users"></i> Clientes</a>
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="{{ url_for('cliente.formListaCliente') }}"
+                ><i class="fas fa-users"></i> Clientes</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{{ url_for('produto.formListaProduto') }}"><i class="fas fa-pizza-slice"></i> Produtos</a>
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="{{ url_for('produto.formListaProduto') }}"
+                ><i class="fas fa-pizza-slice"></i> Produtos</a
+              >
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Dropdown
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Action</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
               </ul>
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" hidden>
-            <button class="btn btn-outline-success" type="submit"><i class="fa fa-user"></i></button>	
+            <a href="{{ url_for('login.logoff') }}"><i class="fas fa-door-open"></i> SAIR</a>
           </form>
         </div>
       </div>
     </nav>
     {% endblock %}
     <div class="container-fluid mt-3 min-vh-100 bg-light">
-      {% block content %}{% endblock %}
+      {% block content %}{% if request.args.get('msg'): %}
+      <h3>{{ request.args.get('msg') }}</h3>
+      <br>
+      {% elif msg: %}
+      <h3>{{ msg }}</h3>
+      <br>
+      {% elif request.args.get('msgErro'): %}
+      <h3>{{ request.args.get('msgErro') }}</h3>
+      <br>
+      {% elif msgErro: %}
+      <h3>{{ msgErro }}</h3>
+      <br>
+      {% endif %}{% endblock %}
     </div>
     {% block footer %}
     <footer class="bg-dark text-center text-white">
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
-        <a class="text-white" href="http://127.0.0.1:5000/" target="_blank">Régis Camargo</a>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2022 Copyright Pastelaria do zé:
+        <a
+          class="text-white"
+          href="Régis Camargo"
+          target="_blank"
+          >Régis Camargo</a
+        >
       </div>
       <!-- Copyright -->
     </footer>
-    {% endblock %} {% block js %}{% endblock %}
+    {% endblock %} 
+    
+    {% block js %}
+
     <script src="{{ url_for('static', filename='bootstrap-5.2.1-dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='fontawesome-free-6.2.0-web/js/all.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery-3.6.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-5.2.1-dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='fontawesome-free-6.2.0-web/js/all.js') }}"></script>
+    <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
+    {% endblock %}
   </body>
 </html>

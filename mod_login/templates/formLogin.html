@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %}
+{% block menu %}
+<nav class="navbar navbar-dark bg-dark">
+<a class="navbar-brand" href="#"><h2 >Pastelaria do Zé</h2></a>
+</nav>
+{% endblock %}
+{% block content %}
+<form action="{{ url_for('login.validaLogin') }}" method="post">
+<input placeholder="CPF" name="usuario" type="text" value="fulaninho">
+<input placeholder="Senha" name="senha" type="password" value="123">
+<br>
+<input type="submit" value="Login">
+
+</form>
+{% endblock %}

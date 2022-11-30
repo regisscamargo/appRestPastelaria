@@ -2,7 +2,9 @@
 content %}
 <form action="{{ url_for('funcionario.formFuncionario') }}" method="POST">
   <h1><i class="fas fa-list"></i> Lista de funcionários</h1>
-  <button type="submit" name="formNovo" class="btn btn-outline-dark my-3"><i class="fas fa-add"></i> Cadastrar novo funcionário</button>
+  <button type="submit" name="formNovo" class="btn btn-outline-dark my-3">
+    <i class="fas fa-add"></i> Cadastrar novo funcionário
+  </button>
 </form>
 <table class="table table table-striped">
   <thead class="thead-dark bg-dark text-white">
@@ -17,8 +19,7 @@ content %}
     </tr>
   </thead>
   <tbody>
-    {% if result %}
-    {% for row in result[0] %}
+    {% if result %} {% for row in result[0] %}
     <tr>
       <th scope="row">{{ row['id_funcionario'] }}</th>
       <td>{{ row['nome'] }}</td>
@@ -26,10 +27,35 @@ content %}
       <td>{{ row['matricula'] }}</td>
       <td>{{ row['telefone'] }}</td>
       <td>{{ row['grupo'] }}</td>
-      <td class="d-flex justify-content-around align-items-center"><i class="fas fa-edit"></i> <i class="fas fa-trash"></i></td>
+      <td class="d-flex flex-row">
+        <form
+          action="{{ url_for('funcionario.formEditFuncionario') }}"
+          method="POST"
+          name="formEdit{{ row['id_funcionario'] }}"
+        >
+          <input type="hidden" name="id" value="{{ row['id_funcionario'] }}" />
+          <button type="submit" name="formEditFuncionario" class="btn">
+            <i class="fas fa-edit"></i>
+          </button>
+        </form>
+        <form
+          action="{{ url_for('funcionario.delete') }}"
+          method="POST"
+          name="formEdit{{ row['id_funcionario'] }}"
+        >
+          <input
+            type="hidden"
+            name="id_funcionario"
+            value="{{ row['id_funcionario'] }}"
+          />
+          <button type="submit" name="delete" class="btn">
+            <i class="fas fa-trash"></i>
+          </button>
+        </form>
+      </td>
     </tr>
-    {% endfor %}
-    {% endif %}
+    {% endfor %} {% endif %}
   </tbody>
 </table>
+
 {% endblock %}

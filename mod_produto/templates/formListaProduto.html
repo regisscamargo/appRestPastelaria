@@ -1,34 +1,58 @@
 {% extends "base.html" %} {% block title %}Funcionários{% endblock %} {% block
-  content %}
-  <form action="{{ url_for('produto.formProduto') }}" method="POST">
-    <h1><i class="fas fa-list"></i> Lista de produtos</h1>
-    <button type="submit" name="formNovo" class="btn btn-outline-dark my-3"><i class="fas fa-add"></i> Cadastrar novo produtos</button>
-  </form>
-  <table class="table table table-striped">
-    <thead class="thead-dark bg-dark text-white">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Produto</th>
-        <th scope="col">Descrição</th>
-        <th scope="col">Foto</th>
-        <th scope="col">Valor</th>
-        <th scope="col">Ação</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if result %}
-      {% for row in result[0] %}
-      <tr>
-        <th scope="row">{{ row['id_produto'] }}</th>
-        <td>{{ row['nome'] }}</td>
-        <td>{{ row['descricao'] }}</td>
-        <td>{{ row['foto'] }}</td>
-        <td>{{ row['valor_unitario'] }}</td>
-        <td class="d-flex justify-content-around align-items-center"><i class="fas fa-edit"></i> <i class="fas fa-trash"></i></td>
-      </tr>
-      {% endfor %}
-      {% endif %}
-    </tbody>
-  </table>
-  {% endblock %}
-  
+content %}
+<form action="{{ url_for('produto.formProduto') }}" method="POST">
+  <h1><i class="fas fa-list"></i> Lista de produtos</h1>
+  <button type="submit" name="formNovo" class="btn btn-outline-dark my-3">
+    <i class="fas fa-add"></i> Cadastrar novo produtos
+  </button>
+</form>
+<table class="table table table-striped">
+  <thead class="thead-dark bg-dark text-white">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if result %} {% for row in result[0] %}
+    <tr>
+      <th scope="row">{{ row['id_produto'] }}</th>
+      <td>{{ row['nome'] }}</td>
+      <td>{{ row['descricao'] }}</td>
+      <td>{{ row['foto'] }}</td>
+      <td>{{ row['valor_unitario'] }}</td>
+      <td class="d-flex flex-row">
+        <form
+          action="{{ url_for('produto.formEditProduto') }}"
+          method="POST"
+          name="formEdit{{ row['id_produto'] }}"
+        >
+          <input type="hidden" name="id" value="{{ row['id_produto'] }}" />
+          <button type="submit" name="formEditProduto" class="btn">
+            <i class="fas fa-edit"></i>
+          </button>
+        </form>
+        <form
+          action="{{ url_for('produto.delete') }}"
+          method="POST"
+          name="formEdit{{ row['id_produto'] }}"
+        >
+          <input
+            type="hidden"
+            name="id_produto"
+            value="{{ row['id_produto'] }}"
+          />
+          <button type="submit" name="delete" class="btn">
+            <i class="fas fa-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %} {% endif %}
+  </tbody>
+</table>
+{% endblock %}
